@@ -5,7 +5,7 @@ import pandas as pd
 from scipy.stats import linregress
 
 # Read file and extract them by columns. 
-filename = '/workspaces/codespaces-jupyter/data/PM_vs_PD_Sensitivity_Final_1.txt'
+filename = '/workspaces/sensors-analysis/data/PM_vs_PD_Sensitivity_Final_1.txt'
 
 run = pd.read_csv(filename, delimiter ='\t')
 print(run)
@@ -22,7 +22,7 @@ isExist = os.path.exists(nameDir)
 if not isExist:
    # Create a new directory because it does not exist
    os.makedirs(nameDir)
-   print("The new directory is created!")
+   print("The new subdirectory is created!")
 
 # Subsets of filters
 NDF1=run.loc[run['NDFilter'] == 1]
@@ -30,18 +30,20 @@ NDF2=run.loc[run['NDFilter'] == 2]
 NDF3=run.loc[run['NDFilter'] == 3]
 
 
-
+################### W vs. V ###################
 NDF1.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='green')
 #from sklearn.linear_model import LinearRegression
 #linear_regressor = LinearRegression()  # create object for the class
 #linear_regressor.fit(run.loc, Y)  # perform linear regression
 
+#Linear fit 
 x=run['KeithleyMeanV'].values
 #print(x)
 #type(x)
 y=run['PowerMeterMeanW'].values
 result = linregress(x, y)
 
+# TODO: Add the linear fit to the plot
 
 plt.savefig(nameDir+'/Mean_NDF1.png')
 NDF2.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='blue')
@@ -50,9 +52,14 @@ NDF3.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW'
 plt.savefig(nameDir+'/Mean_NDF3.png')
 #plt.show()
 
+# TODO: Compute residuals 
+
+
+################### StdW vs. V ###################
 run.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterStdW', s=3, c='green')
 plt.savefig(nameDir+'/StdW_MeanV_NDF123.png')
 
+################### StdW vs. StdV ###################
 #fig, axes0 = plt.subplots()
 NDF1.plot(kind='scatter', figsize=(8, 8), x='KeithleyStdV', y='PowerMeterStdW', s=3, c='green')
 plt.savefig(nameDir+'/Std_NDF1.png')
@@ -62,7 +69,7 @@ NDF3.plot(kind='scatter', figsize=(8, 8), x='KeithleyStdV', y='PowerMeterStdW', 
 plt.savefig(nameDir+'/Std_NDF3.png')
 
 
-
+################### MeanW histogram per ND ###################
 NDF1.hist(column='PowerMeterMeanW', bins=10, grid=True, figsize=(12,8), color='green', zorder=2, rwidth=0.9, alpha = 0.7)
 plt.savefig(nameDir+'/hNDF1_PowerMeterMeanW.png')
 NDF2.hist(column='PowerMeterMeanW', bins=10, grid=True, figsize=(12,8), color='green', zorder=2, rwidth=0.9, alpha = 0.7)
@@ -73,6 +80,8 @@ plt.savefig(nameDir+'/hNDF3_PowerMeterMeanW.png')
 
 # Histograms of all variables
 #df['my_column'].plot(kind='hist', logx=True)
+
+################### More histograms ###################
 fig, axes = plt.subplots()
 NDF1.hist(ax=axes, column='PowerMeterMeanW', bins=100, grid=True, figsize=(12,8), color='green', zorder=2, rwidth=0.9, alpha = 0.7)
 NDF2.hist(ax=axes, column='PowerMeterMeanW', bins=100, grid=True, figsize=(12,8), color='blue', zorder=2, rwidth=0.9, alpha = 0.5)
@@ -96,12 +105,3 @@ ax = run.hist(column='LaserDisplaymW', bins=10, grid=False, figsize=(12,8), colo
 plt.savefig(nameDir+'/h6.png') 
 
 
-
-
-
-
-
-# Do 2D plot of laser power vs. voltage (histograms of each variable)
-# NicePlots(run)
-
-# Compute residuals 
