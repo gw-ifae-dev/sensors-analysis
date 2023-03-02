@@ -1,7 +1,7 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import pandas as pd
 from scipy.stats import linregress
 
 # Read file and extract them by columns. 
@@ -74,7 +74,7 @@ plt.savefig(nameDir+'/hNDF3_PowerMeterMeanW.png')
 # Histograms of all variables
 #df['my_column'].plot(kind='hist', logx=True)
 fig, axes = plt.subplots()
-NDF1.hist(ax=axes, column='PowerMeterMeanW', bins=10, grid=True, figsize=(12,8), color='green', zorder=2, rwidth=0.9, alpha = 0.7)
+NDF1.hist(ax=axes, column='PowerMeterMeanW', bins=100, grid=True, figsize=(12,8), color='green', zorder=2, rwidth=0.9, alpha = 0.7)
 NDF2.hist(ax=axes, column='PowerMeterMeanW', bins=100, grid=True, figsize=(12,8), color='blue', zorder=2, rwidth=0.9, alpha = 0.5)
 NDF3.hist(ax=axes, column='PowerMeterMeanW', bins=100, grid=True, figsize=(12,8), color='magenta', zorder=2, rwidth=0.9, alpha = 0.3)
 axes.set_xscale('log')
