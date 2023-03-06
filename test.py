@@ -90,7 +90,6 @@ axes.set_xscale('log')
 plt.savefig(nameDir+'/h123.png')
 
 
-texto = 'sjdskajdalkjdsakjdsaldjaksdjasdjkjkkk'
 PowerMeterStdW=run["PowerMeterStdW"]
 #print(PowerMeterStdW)
 fig2, axes2 = plt.subplots()
