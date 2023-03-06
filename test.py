@@ -38,19 +38,15 @@ NDF1.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW'
 
 #Linear fit 
 x=run['KeithleyMeanV'].values
-#print(x)
-#type(x)
 y=run['PowerMeterMeanW'].values
 result = linregress(x, y)
 
 # TODO: Add the linear fit to the plot
-
 plt.savefig(nameDir+'/Mean_NDF1.png')
 NDF2.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='blue')
 plt.savefig(nameDir+'/Mean_NDF2.png')
 NDF3.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='magenta')
 plt.savefig(nameDir+'/Mean_NDF3.png')
-#plt.show()
 
 # TODO: Compute residuals 
 
@@ -91,17 +87,22 @@ plt.savefig(nameDir+'/h123.png')
 
 
 PowerMeterStdW=run["PowerMeterStdW"]
-#print(PowerMeterStdW)
-fig2, axes2 = plt.subplots()
 bins=np.arange(min(PowerMeterStdW), max(PowerMeterStdW) + 10**-6, 10**-6)
 plt.hist(PowerMeterStdW, bins)
-#plt.ylim(0,1000)
+#plt.ylim(0,200)
 plt.yscale('log')
 plt.savefig(nameDir+'/h2_.png')
 
 #fig, ax = plt.subplots()
 ax = run.hist(column='PowerMeterStdW', bins=10, grid=False, figsize=(12,8), color='#86bf91', zorder=2, rwidth=0.9)
 plt.savefig(nameDir+'/h2.png')
+
+KeithleyMeanV=run["KeithleyMeanV"]
+bins=np.arange(min(KeithleyMeanV), max(KeithleyMeanV) + 10**-6, 10**-6)
+plt.hist(KeithleyMeanV, bins)
+#plt.ylim(0,200)
+plt.yscale('log')
+plt.savefig(nameDir+'/h3_.png')
 
 ax = run.hist(column='KeithleyMeanV', bins=10, grid=False, figsize=(12,8), color='#86bf91', zorder=2, rwidth=0.9)
 plt.savefig(nameDir+'/h3.png')
