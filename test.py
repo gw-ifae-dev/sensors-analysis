@@ -89,6 +89,18 @@ NDF3.hist(ax=axes, column='PowerMeterMeanW', bins=100, grid=True, figsize=(12,8)
 axes.set_xscale('log')
 plt.savefig(nameDir+'/h123.png')
 
+
+texto = 'sjdskajdalkjdsakjdsaldjaksdjasdjkjkkk'
+PowerMeterStdW=run["PowerMeterStdW"]
+#print(PowerMeterStdW)
+fig2, axes2 = plt.subplots()
+bins=np.arange(min(PowerMeterStdW), max(PowerMeterStdW) + 10**-6, 10**-6)
+plt.hist(PowerMeterStdW, bins)
+#plt.ylim(0,1000)
+plt.yscale('log')
+plt.savefig(nameDir+'/h2_.png')
+
+#fig, ax = plt.subplots()
 ax = run.hist(column='PowerMeterStdW', bins=10, grid=False, figsize=(12,8), color='#86bf91', zorder=2, rwidth=0.9)
 plt.savefig(nameDir+'/h2.png')
 
