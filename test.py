@@ -56,12 +56,31 @@ plt.savefig(nameDir+'/quantitiesvsTimeRun1234.png')
 plt.close()
 
 #time series divived by run
-Firstrun=[0,1235]
-Secondrun=[1235,5057]
-Thirdrun=[5058,8879]
-Fourthrun=[8880,10643]
+Firstrun=[0,1234] #GPSrange []
+#t.gps[1234]
+Secondrun=[1235,5056]
+Thirdrun=[5057,8878]
+Fourthrun=[8879,10643]
 #nfilters= len(np.unique(run["NDFilter"]))
+#Filter1idx=run.loc[run['NDFilter']== 1].index 
+#Filter2idx=run.loc[run['NDFilter']== 2].index 
+#Filter3idx=run.loc[run['NDFilter']== 3].index 
 
+#Day1F1=run['PowerMeterMeanW'].values[0:1234]
+
+#example to filter only first run & first filter
+Run1idxini=0
+Run1idxend=1234 #we have to obtain those values from the file
+Filter1idxRun1=run.loc[(run['NDFilter']== 1) & (run.index<Run1idxend) & (run.index>Run1idxini)].index 
+print(run.loc[Filter1idxRun1].head())
+plt.plot(t.gps[Filter1idxRun1]-t.gps[0], run['PowerMeterMeanW'].values[Filter1idxRun1], linestyle='None', marker='o', label='PowerMeterMeanW', alpha=0.7)
+plt.plot(t.gps[Filter1idxRun1]-t.gps[0], run['KeithleyMeanV'].values[Filter1idxRun1], linestyle='None', marker='.', label='KeithleyMeanV', alpha=0.5)
+plt.xlabel('seconds (s)')
+plt.ylabel('Filter1')
+plt.legend()
+plt.grid()
+plt.savefig(nameDir+'/quantitiesvsTimeRun1Filter1.png')
+plt.close()
 
 
 plt.plot(t.gps[0:1234]-t.gps[0], run['PowerMeterMeanW'].values[0:1234], linestyle='None', marker='o', label='PowerMeterMeanW', alpha=0.7)
