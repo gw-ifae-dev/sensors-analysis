@@ -31,18 +31,20 @@ NDF3=run.loc[run['NDFilter'] == 3]
 
 
 ################### W vs. V ###################
+x=NDF1['KeithleyMeanV'].values
+y=NDF1['PowerMeterMeanW'].values
+res = linregress(x, y)
+#plt.savefig(nameDir+'/Mean_NDF1.png')
 NDF1.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='green')
+plt.plot(x, res.intercept + res.slope*x, 'r', label='fitted line')
+plt.legend()
+plt.savefig(nameDir+'/Mean_NDF1.png')
 #from sklearn.linear_model import LinearRegression
 #linear_regressor = LinearRegression()  # create object for the class
 #linear_regressor.fit(run.loc, Y)  # perform linear regression
 
 #Linear fit 
-x=run['KeithleyMeanV'].values
-y=run['PowerMeterMeanW'].values
-result = linregress(x, y)
 
-# TODO: Add the linear fit to the plot
-plt.savefig(nameDir+'/Mean_NDF1.png')
 NDF2.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='blue')
 plt.savefig(nameDir+'/Mean_NDF2.png')
 NDF3.plot(kind='scatter', figsize=(8, 8), x='KeithleyMeanV', y='PowerMeterMeanW', s=3, c='magenta')
@@ -88,6 +90,7 @@ plt.savefig(nameDir+'/h123.png')
 
 PowerMeterStdW=run["PowerMeterStdW"]
 bins=np.arange(min(PowerMeterStdW), max(PowerMeterStdW) + 10**-6, 10**-6)
+fig, ax = plt.subplots()
 plt.hist(PowerMeterStdW, bins)
 #plt.ylim(0,200)
 plt.yscale('log')
@@ -99,6 +102,7 @@ plt.savefig(nameDir+'/h2.png')
 
 KeithleyMeanV=run["KeithleyMeanV"]
 bins=np.arange(min(KeithleyMeanV), max(KeithleyMeanV) + 10**-6, 10**-6)
+fig, ax = plt.subplots()
 plt.hist(KeithleyMeanV, bins)
 #plt.ylim(0,200)
 plt.yscale('log')
