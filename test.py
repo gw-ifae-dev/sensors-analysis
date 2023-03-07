@@ -63,6 +63,7 @@ Fourthrun=[8880,10643]
 #nfilters= len(np.unique(run["NDFilter"]))
 
 
+
 plt.plot(t.gps[0:1234]-t.gps[0], run['PowerMeterMeanW'].values[0:1234], linestyle='None', marker='o', label='PowerMeterMeanW', alpha=0.7)
 plt.plot(t.gps[0:1234]-t.gps[0], run['KeithleyMeanV'].values[0:1234], linestyle='None', marker='.', label='KeithleyMeanV', alpha=0.5)
 plt.xlabel('seconds (s)')
