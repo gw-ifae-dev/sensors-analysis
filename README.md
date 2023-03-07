@@ -1,7 +1,7 @@
 # GitHub Codespaces ♥️ Jupyter Notebooks
 
-Welcome to your shiny new codespace! We've got everything fired up and running for you to explore Python and Jupyter notebooks.
+Goal of the project is to calibrate the photodiodes. For that purpose, a absolutely calibrated PowerMeter is used to obtain the power W-V relationship thanks to the two beams after the beamsplitter. In this way, we know what power we expect to be reaching the PD, so that we can calibrated. The calibration of the PD is done thanks to the Rasberry. Note that in the data columns, we will either have PowerMeter+Keithley or Raspberry(PD)+Keithley.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with what you're seeing right now - where you go from here is up to you!
+Each of the used filters will be connected to a W-V relationship, as the effect of the filters is not linear but a convolution, so a different laser power is trasmited  (may we do a FFT of the signal to asses this? ). 
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+
