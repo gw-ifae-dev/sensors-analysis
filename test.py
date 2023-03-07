@@ -12,6 +12,7 @@ plt.close('all')
 run = pd.read_csv(filename, delimiter ='\t')
 print(run)
 
+# Reformat the time in case it is needed
 TimenOk=run.loc[run['Time'].str.len() == 10].index #those are not ok we need to change
 run.loc[TimenOk,'Time'] = '0'+run['Time']
 tt=run['Date'].str[6:10]+'-'+run['Date'].str[3:5]+'-'+run['Date'].str[0:2]+' '+run['Time'].str[:8]+'.000'
@@ -43,7 +44,6 @@ plt.savefig(nameDir+'/PowerMeterMeanWvsTime.png')
 plt.close()
 
 #Time series plots
-
 plt.plot(t.gps-t.gps[0], run['PowerMeterMeanW'].values, linestyle='None', marker='o', label='PowerMeterMeanW', alpha=0.7)
 plt.plot(t.gps-t.gps[0], run['KeithleyMeanV'].values, linestyle='None', marker='.', label='KeithleyMeanV', alpha=0.5)
 plt.xlabel('seconds (s)')
@@ -82,6 +82,17 @@ plt.grid()
 plt.savefig(nameDir+'/quantitiesvsTimeRun1Filter1.png')
 plt.close()
 
+#filtering First run, Second filter
+Filter2idxRun1=run.loc[(run['NDFilter']== 2) & (run.index<Run1idxend) & (run.index>Run1idxini)].index 
+print(run.loc[Filter2idxRun1].head())
+plt.plot(t.gps[Filter2idxRun1]-t.gps[0], run['PowerMeterMeanW'].values[Filter2idxRun1], linestyle='None', marker='o', label='PowerMeterMeanW', alpha=0.7)
+plt.plot(t.gps[Filter2idxRun1]-t.gps[0], run['KeithleyMeanV'].values[Filter2idxRun1], linestyle='None', marker='.', label='KeithleyMeanV', alpha=0.5)
+plt.xlabel('seconds (s)')
+plt.ylabel('Filter2')
+plt.legend()
+plt.grid()
+plt.savefig(nameDir+'/quantitiesvsTimeRun1Filter2.png')
+plt.close()
 
 plt.plot(t.gps[0:1234]-t.gps[0], run['PowerMeterMeanW'].values[0:1234], linestyle='None', marker='o', label='PowerMeterMeanW', alpha=0.7)
 plt.plot(t.gps[0:1234]-t.gps[0], run['KeithleyMeanV'].values[0:1234], linestyle='None', marker='.', label='KeithleyMeanV', alpha=0.5)
