@@ -1,3 +1,9 @@
+The format of the files should follow: 
+
+$TESTTYPE_$GCONFIGURATION_$SUBTESTTYPE_$TESTNUMBER_$FILENUMBER.txt 
+
+Test in this folder are:
+
 TEST A: Valid data are power meter (W) and keithley voltage (V). There were captured 8 files. They would be combined each other to improve statistics.
 From Monitor_Responsivity_1_0.txt to Monitor_Responsivity_1_7.txt
 
