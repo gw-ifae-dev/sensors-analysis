@@ -6,3 +6,10 @@ Each of the used filters will be connected to a W-V relationship, as the effect 
 
 
 <img width="919" alt="Screenshot 2023-03-07 at 17 59 54" src="https://user-images.githubusercontent.com/126777371/223494247-fd1b9d37-e637-4d06-90f8-156da6a4d00e.png">
+
+Calibration constant to be given as $\mu$ W/m +- E. The uncertainty budget, whose quadratic sum is E, include various sources of uncertainties, as geometrical aspects, power stability aspects, and dependency with the temperature. Then, we can look into the contributions from laser, dark-current, readout noise. 
+
+Possible incoming tests to reach a robust characterization: 
+- Dark Current (current in absence of light). Jorge suspects that it is higher that it should be as it is not well polarised (3.3 V for the p-n junction instead of 10-12V), so that some current is still flowing to the small energy gap of the semiconductor. 
+- Laser ON. 
+- Angle of incidence 
